@@ -26,3 +26,13 @@ func Min64(x, y int64) int64 {
 func Max64(x, y int64) int64 {
 	return int64(stdmath.Max(float64(x), float64(y)))
 }
+
+func Abs64(x int64) int64 {
+	switch {
+	case x < 0:
+		return -x
+	case x == 0:
+		return 0 // return correctly abs(-0)
+	}
+	return x
+}
