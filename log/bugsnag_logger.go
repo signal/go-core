@@ -72,7 +72,7 @@ func (s *BugsnagLogger) Error(vals ...interface{}) {
 
 func (s *BugsnagLogger) Errorf(msg string, vals ...interface{}) {
 	vals = append(vals, bugsnag.ErrorClass{"Error"})
-	s.notify(fmt.Errorf(msg), vals...)
+	s.notify(fmt.Errorf(msg, vals...), vals...)
 	s.logger.Errorf(s.name+msg, vals...)
 }
 
@@ -87,7 +87,7 @@ func (s *BugsnagLogger) Fatal(vals ...interface{}) {
 func (s *BugsnagLogger) Fatalf(msg string, vals ...interface{}) {
 	vals = append(vals, bugsnag.Configuration{Synchronous: true})
 	vals = append(vals, bugsnag.ErrorClass{"Fatal"})
-	s.notify(fmt.Errorf(msg), vals...)
+	s.notify(fmt.Errorf(msg, vals...), vals...)
 	s.logger.Fatalf(s.name+msg, vals...)
 }
 
