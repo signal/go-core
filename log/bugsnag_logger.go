@@ -65,29 +65,29 @@ func (s *BugsnagLogger) Warnf(msg string, vals ...interface{}) {
 }
 
 func (s *BugsnagLogger) Error(vals ...interface{}) {
-	vals = append(vals, bugsnag.ErrorClass{"Error"})
-	s.notify(fmt.Errorf(fmt.Sprint(vals...)), vals...)
+	bugSnagVals := append(vals, bugsnag.ErrorClass{"Error"})
+	s.notify(fmt.Errorf(fmt.Sprint(vals...)), bugSnagVals...)
 	s.logger.Error(s.name + fmt.Sprint(vals...))
 }
 
 func (s *BugsnagLogger) Errorf(msg string, vals ...interface{}) {
-	vals = append(vals, bugsnag.ErrorClass{"Error"})
-	s.notify(fmt.Errorf(msg, vals...), vals...)
+	bugSnagVals := append(vals, bugsnag.ErrorClass{"Error"})
+	s.notify(fmt.Errorf(msg, vals...), bugSnagVals...)
 	s.logger.Errorf(s.name+msg, vals...)
 }
 
 func (s *BugsnagLogger) Fatal(vals ...interface{}) {
 	// fatal errors need to be synchronous so the program doesn't exit before bugsnag is notified
-	vals = append(vals, bugsnag.Configuration{Synchronous: true})
-	vals = append(vals, bugsnag.ErrorClass{"Fatal"})
-	s.notify(fmt.Errorf(fmt.Sprint(vals...)), vals...)
+	bugSnagVals := append(vals, bugsnag.Configuration{Synchronous: true})
+	bugSnagVals = append(bugSnagVals, bugsnag.ErrorClass{"Fatal"})
+	s.notify(fmt.Errorf(fmt.Sprint(vals...)), bugSnagVals...)
 	s.logger.Fatal(s.name + fmt.Sprint(vals...))
 }
 
 func (s *BugsnagLogger) Fatalf(msg string, vals ...interface{}) {
-	vals = append(vals, bugsnag.Configuration{Synchronous: true})
-	vals = append(vals, bugsnag.ErrorClass{"Fatal"})
-	s.notify(fmt.Errorf(msg, vals...), vals...)
+	bugSnagVals := append(vals, bugsnag.Configuration{Synchronous: true})
+	bugSnagVals = append(bugSnagVals, bugsnag.ErrorClass{"Fatal"})
+	s.notify(fmt.Errorf(msg, vals...), bugSnagVals...)
 	s.logger.Fatalf(s.name+msg, vals...)
 }
 
