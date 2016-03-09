@@ -29,6 +29,7 @@ func NewBugsnagConfig(version, env, apiKey string) *BugsnagConfig {
 			ReleaseStage:        env,
 			AppVersion:          version,
 			NotifyReleaseStages: []string{"production"},
+			PanicHandler:        func() {},
 		})
 		reportable = true
 	}
