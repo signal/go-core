@@ -92,6 +92,18 @@ func (s *BugsnagLogger) Fatalf(msg string, vals ...interface{}) {
 	s.logger.Fatalf(s.name+msg, vals...)
 }
 
+func (s *BugsnagLogger) Alert(vals ...interface{}) {
+	bugSnagVals := append(vals, bugsnag.ErrorClass{"Error"})
+	s.notify(fmt.Errorf(fmt.Sprint(vals...)), bugSnagVals...)
+	s.logger.Alert(s.name + fmt.Sprint(vals...))
+}
+
+func (s *BugsnagLogger) Alertf(msg string, vals ...interface{}) {
+	bugSnagVals := append(vals, bugsnag.ErrorClass{"Error"})
+	s.notify(fmt.Errorf(fmt.Sprint(vals...)), bugSnagVals...)
+	s.logger.Alertf(s.name+msg, vals...)
+}
+
 func (s *BugsnagLogger) LogDebug() bool {
 	return s.logger.LogDebug()
 }

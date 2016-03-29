@@ -9,6 +9,7 @@ const (
 	WARN
 	INFO
 	DEBUG
+	ALERT
 )
 
 func parseLevel(lvl string) Level {
@@ -19,6 +20,8 @@ func parseLevel(lvl string) Level {
 		return WARN
 	case "info":
 		return INFO
+	case "alert":
+		return ALERT
 	default:
 		return DEBUG
 	}
@@ -29,4 +32,5 @@ var levelPrefixes = []string{
 	"WARNING",
 	"INFO",
 	"DEBUG",
+	"ALERT",
 }

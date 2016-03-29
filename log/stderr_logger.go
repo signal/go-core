@@ -53,6 +53,14 @@ func (s *StderrLogger) Fatalf(msg string, vals ...interface{}) {
 	s.Fatal(fmt.Sprintf(msg, vals...))
 }
 
+func (s *StderrLogger) Alert(vals ...interface{}) {
+	s.output(ALERT, fmt.Sprint(vals...))
+}
+
+func (s *StderrLogger) Alertf(msg string, vals ...interface{}) {
+	s.Alert(fmt.Sprintf(msg, vals...))
+}
+
 func (s *StderrLogger) LogDebug() bool {
 	return s.level >= DEBUG
 }

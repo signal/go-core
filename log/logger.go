@@ -16,6 +16,9 @@ type Logger interface {
 	Fatal(vals ...interface{})
 	Fatalf(msg string, vals ...interface{})
 
+	Alert(vals ...interface{})
+	Alertf(msg string, vals ...interface{})
+
 	LogDebug() bool
 	LogWarn() bool
 	LogInfo() bool
@@ -65,6 +68,14 @@ func Fatal(args ...interface{}) {
 }
 
 func Fatalf(format string, args ...interface{}) {
+	logger.Fatalf(format, args...)
+}
+
+func Alert(args ...interface{}) {
+	logger.Fatal(args...)
+}
+
+func Alertf(format string, args ...interface{}) {
 	logger.Fatalf(format, args...)
 }
 
