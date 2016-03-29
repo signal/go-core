@@ -72,11 +72,11 @@ func Fatalf(format string, args ...interface{}) {
 }
 
 func Alert(args ...interface{}) {
-	logger.Fatal(args...)
+	logger.Alert(args...)
 }
 
 func Alertf(format string, args ...interface{}) {
-	logger.Fatalf(format, args...)
+	logger.Alertf(format, args...)
 }
 
 func LogDebug() bool {
