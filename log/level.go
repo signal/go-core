@@ -5,11 +5,11 @@ import "strings"
 type Level int
 
 const (
-	ERROR = iota
+	ALERT = iota
+	ERROR
 	WARN
 	INFO
 	DEBUG
-	ALERT
 )
 
 func parseLevel(lvl string) Level {
@@ -28,9 +28,9 @@ func parseLevel(lvl string) Level {
 }
 
 var levelPrefixes = []string{
+	"ALERT",
 	"ERROR",
 	"WARNING",
 	"INFO",
 	"DEBUG",
-	"ALERT",
 }
