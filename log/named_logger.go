@@ -51,6 +51,14 @@ func (s *NamedLogger) Fatalf(msg string, vals ...interface{}) {
 	s.logger.Fatalf(s.name+msg, vals...)
 }
 
+func (s *NamedLogger) Alert(vals ...interface{}) {
+	s.logger.Alert(s.name + fmt.Sprint(vals...))
+}
+
+func (s *NamedLogger) Alertf(msg string, vals ...interface{}) {
+	s.logger.Alertf(s.name+msg, vals...)
+}
+
 func (s *NamedLogger) LogDebug() bool {
 	return s.logger.LogDebug()
 }
